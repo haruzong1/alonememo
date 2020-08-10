@@ -62,13 +62,19 @@
         }
 
         function postArticle() {
+            var url = $('#post-url').val();
+            var comment =$('#post-comment').val();
+
             $.ajax({
                 type: "POST",
                 url: "/memo",
-                data: {},
+                data: {'url_give':url,'comment_give':comment},
                 success: function (response) { // 성공하면
                     if (response["result"] == "success") {
                         alert(response["msg"]);
+                        window.location.reload();
+                    }else{
+                        alert('서버오류입니다.')
                     }
                 }
             })
